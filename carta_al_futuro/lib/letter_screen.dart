@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'db_helper.dart';
+import 'letters_list_screen.dart';
 
 class LetterScreen extends StatefulWidget {
   const LetterScreen({super.key});
@@ -68,7 +69,7 @@ class _LetterScreenState extends State<LetterScreen> {
             ),
             const SizedBox(height: 10),
             DropdownButtonFormField<String>(
-              value: _selectedTime,
+              initialValue: _selectedTime,
               items: const [
                 DropdownMenuItem(value: "6 meses", child: Text("6 meses")),
                 DropdownMenuItem(value: "1 año", child: Text("1 año")),
@@ -87,9 +88,20 @@ class _LetterScreenState extends State<LetterScreen> {
               onPressed: _sendLetter,
               child: const Text("Enviar carta"),
             ),
+            ElevatedButton(
+  onPressed: () {
+    Navigator.push(
+      context,
+      MaterialPageRoute(builder: (_) => const LettersListScreen()),
+    );
+  },
+  child: const Text("Ver cartas guardadas"),
+),
+
           ],
         ),
       ),
     );
   }
 }
+
